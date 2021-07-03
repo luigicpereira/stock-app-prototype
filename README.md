@@ -57,3 +57,7 @@ Executar o comando abaixo para iniciar o projeto
 - Atualizar os valores em tela automaticamente após um certo período de tempo
 
 - Customizar o período exibido no gráfico
+
+---
+
+- README desenvolvido utilizando https://readme.so/pt/editor
