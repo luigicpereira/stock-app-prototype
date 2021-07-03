@@ -1,44 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Stock App 📈📉📈
 
-## Available Scripts
+Uma aplicação para visualização de preços de stocks listadas na bolsa americana.
 
-In the project directory, you can run:
+## Run Locally 💻
 
-### `yarn start`
+Clonar o projeto
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+  git clone https://github.com/luigicpereira/stock-app-prototype.git
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Navegar para o diretório do projeto
 
-### `yarn test`
+```bash
+  cd stock-app-prototype
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Instalar dependências
 
-### `yarn build`
+```bash
+  yarn
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Duplicar o arquivo **.env.example** na raiz e renomear como **.env.local**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Preenher o valor da variável `REACT_APP_IEX_PUBLIC_KEY` do arquivo **.env.local** com a chave pública que será utilizada nas chamadas da API da IEX Cloud
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Executar o comando abaixo para iniciar o projeto
 
-### `yarn eject`
+```bash
+  yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Features 🎯
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Visualização das cotações do dia ou do dia anterior das stocks, REITs e ETFs listados na bolsa americana
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Visualização do preço atual e da variação de preço
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Lista com os 5 ativos acessados por último para acesso rápido
 
-## Learn More
+- Favoritar ativos. Ativos favoritados irão aparecer na brra lateral para acesso rápido também
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Roadmap 🧩
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- A lista de pesquisa de ativos é baseada em arquivo local, alterar para que a lista esteja sempre atualizada com as stocks, REITs e ETFs listados n bolsa americana
+
+- Implementar uma tela de login e armazenar as empresas favoritas por usuário
+
+- Deixar o layout responsivo para uso em mobile
+
+- Desenvolver um app em React Native para uso nativo em mobile
+
+- Server Side Rendering usando Next.js
+
+- Atualizar os valores em tela automaticamente após um certo período de tempo
+
+- Customizar o período exibido no gráfico
