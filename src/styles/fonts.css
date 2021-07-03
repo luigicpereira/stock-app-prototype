@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Graphik;
+  font-weight: 400;
+  src: url(./fonts/GraphikRegular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: Graphik;
+  font-weight: 500;
+  src: url(./fonts/GraphikMedium.otf) format("opentype");
+}
+
+@font-face {
+  font-family: Graphik;
+  font-weight: 600;
+  src: url(./fonts/GraphikSemibold.otf) format("opentype");
+}
