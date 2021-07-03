@@ -44,7 +44,7 @@ Executar o comando abaixo para iniciar o projeto
 
 ## Roadmap 🧩
 
-- A lista de pesquisa de ativos é baseada em arquivo local, alterar para que a lista esteja sempre atualizada com as stocks, REITs e ETFs listados n bolsa americana
+- A lista de pesquisa de ativos é baseada em arquivo local, alterar para que a lista esteja sempre atualizada com as stocks, REITs e ETFs listados na bolsa americana
 
 - Implementar uma tela de login e armazenar as empresas favoritas por usuário
 
