@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { RootState } from "../app/store";
 
-import iexAPI, { QuoteInfo } from "../services/iexcloudAPI";
+import iexAPI, { QuoteInfo, StockNews } from "../services/iexcloudAPI";
 
 interface Stock {
   symbol: string;
@@ -31,11 +31,13 @@ export interface ChartData {
 export interface StockState {
   stocks: Stock[];
   recentStocks: RecentStock[];
+  news: StockNews[];
 }
 
 const initialState: StockState = {
   stocks: [],
   recentStocks: [],
+  news: [],
 };
 
 export const selectStock = createAsyncThunk(
@@ -49,7 +51,20 @@ export const selectStock = createAsyncThunk(
         },
       });
 
-      return response.data as QuoteInfo;
+      const quoteResponse = response.data as QuoteInfo;
+
+      response = await iexAPI.get(`/stable/stock/${symbol}/news`, {
+        params: {
+          token: process.env.REACT_APP_IEX_PUBLIC_KEY,
+        },
+      });
+
+      const newsResponse = response.data as StockNews[];
+
+      return {
+        quoteResponse,
+        newsResponse,
+      };
     } catch (error) {
       if (error.response.status === 404) {
         alert(`Não existe stock com o código ${symbol}`);
@@ -82,13 +97,15 @@ export const stockSlice = createSlice({
         return;
       }
 
+      const { quoteResponse, newsResponse } = action.payload;
+
       const {
         symbol,
         companyName: name,
         latestPrice: price,
         change,
         changePercent,
-      } = action.payload;
+      } = quoteResponse;
 
       let selectedStock: Stock;
 
@@ -131,6 +148,8 @@ export const stockSlice = createSlice({
       state.recentStocks = [recentStock]
         .concat(state.recentStocks.filter((stock) => stock.symbol !== symbol))
         .slice(0, 5);
+
+      state.news = newsResponse;
     });
   },
 });
@@ -147,6 +166,10 @@ export const selectRecentStocks = (state: RootState) => {
 
 export const selectFavoritedStocks = (state: RootState) => {
   return state.stock.stocks.filter((stock) => stock.favorited);
+};
+
+export const selectStockNews = (state: RootState) => {
+  return state.stock.news;
 };
 
 const stockReducer = stockSlice.reducer;

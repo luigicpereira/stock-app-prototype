@@ -142,3 +142,17 @@ export const RecentCompaniesList = styled.ul`
     margin-left: 20px;
   }
 `;
+
+export const NewsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+`;
+
+export const News = styled.div`
+  padding: 10px;
+  padding: 16px;
+  background: ${colors.white};
+  border-radius: 8px;
+  box-shadow: 0px 8px 20px -2px rgba(43, 37, 63, 0.1);
+`;

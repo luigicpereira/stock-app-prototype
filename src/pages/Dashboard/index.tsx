@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import {
   Container,
+  NewsContainer,
   RecentCompaniesList,
   RecentCompaniesNavigationContainer,
   RecentCompaniesTitleContainer,
@@ -10,6 +11,7 @@ import {
   SearchResultItem,
   SearchResultList,
   TitleContainer,
+  News,
 } from "./styles";
 
 import Subtitle from "../../components/Subtitle";
@@ -29,7 +31,9 @@ import {
   selectRecentStocks,
   selectSelectedStock,
   selectStock,
+  selectStockNews,
 } from "../../store/Stock.store";
+import { format } from "date-fns";
 
 interface CompanyForSearch {
   symbol: string;
@@ -40,6 +44,7 @@ const Dashboard: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const recentStocks = useAppSelector(selectRecentStocks);
+  const stockNews = useAppSelector(selectStockNews);
 
   const recentCompaniesRef = useRef(null);
 
@@ -298,6 +303,31 @@ const Dashboard: React.FC = () => {
         ))}
       </RecentCompaniesList>
       {selectedStock && <div style={{ flex: 1 }}></div>}
+
+      <NewsContainer>
+        {stockNews.map((news) => (
+          <News>
+            <p
+              style={{
+                fontWeight: 600,
+                marginBottom: 10,
+                textAlign: "justify",
+              }}
+            >
+              {news.headline}
+            </p>
+            <p style={{ marginBottom: 5, opacity: 0.7 }}>
+              {format(new Date(news.datetime), "dd/MM/yyyy HH:mm:ss")}
+            </p>
+            <img
+              style={{ width: "100%", marginBottom: 10 }}
+              src={news.image}
+              alt="News"
+            />
+            <p>{news.summary}</p>
+          </News>
+        ))}
+      </NewsContainer>
     </Container>
   );
 };

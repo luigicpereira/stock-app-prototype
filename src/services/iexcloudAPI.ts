@@ -18,3 +18,10 @@ export interface QuoteInfo {
   change: number;
   changePercent: number;
 }
+
+export interface StockNews {
+  datetime: number;
+  headline: string;
+  summary: string;
+  image: string;
+}
